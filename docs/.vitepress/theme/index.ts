@@ -1,13 +1,17 @@
-import { watch } from 'vue'
+import { h, watch } from 'vue'
 import { inBrowser, EnhanceAppContext } from 'vitepress'
 import defaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
+import Layout from './Layout.vue'
 import './styles/index.css'
 
 let homePageStyle: HTMLStyleElement | undefined
 
 const theme: Theme = {
   ...defaultTheme,
+  Layout: () => {
+    return h(Layout)
+  },
   enhanceApp({ router }: EnhanceAppContext) {
     if (inBrowser) {
       watch(
